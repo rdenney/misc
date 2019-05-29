@@ -1,0 +1,7 @@
+#%RAML 1.0 Trait
+
+
+queryParameters:
+  orderby:
+    description: Order by a certain field
+    required: false

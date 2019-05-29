@@ -7,12 +7,14 @@ documentation:
   - !include documentation/acmeBankDoc2.raml
 
 resourceTypes:
-  Collection: !include resourceTypes/collection.raml
-  Member: !include resourceTypes/member.raml
+  Collection: !include exchange_modules/1acfb2a8-25f5-4e2c-9e4d-2cf5ac1f7b50/collection/1.0.0/collection.raml
+  Member: !include exchange_modules/1acfb2a8-25f5-4e2c-9e4d-2cf5ac1f7b50/member/1.0.0/member.raml
 
 traits:
-  contentNegotiable: !include traits/contentNegotiable.raml
   sortable: !include traits/sortable.raml
+
+uses:
+  myLib: libraries/traits-library.raml
 
 types:
   ErrorMessage: !include datatypes/CustomErrorMessage.raml
@@ -22,10 +24,11 @@ types:
 
 /customers:
   type: Collection
-  is: 
-    - contentNegotiable
+  
   get:
-   
+    is: 
+      - myLib.contentNegotiable
+      - myLib.pageable
     responses:
       200:   
         headers:
@@ -81,3 +84,5 @@ types:
     type: Member
     get:
     put:
+      
+      

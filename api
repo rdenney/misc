@@ -8,6 +8,7 @@ documentation:
 
 resourceTypes:
   Collection: !include resourceTypes/collection.raml
+  Member: !include resourceTypes/member.raml
 
 types:
   ErrorMessage: !include datatypes/CustomErrorMessage.raml
@@ -17,7 +18,6 @@ types:
 
 /customers:
   type: Collection
-  
   get:
     description: Returns a collection of customers
     displayName: Get Customers
@@ -33,106 +33,17 @@ types:
         headers:
           Cache-Control:
             description: here's how to use this header ...
-          Expires:
-            
-        
-          
-
-      
-                
+          Expires:         
+              
   post:
     
   /{customerId}:
-    get:
-      responses:
-        200:
-        400:
-          body:
-            application/json:
-              type: ErrorMessage
-        401:
-          body:
-            application/json:
-              type: ErrorMessage
-        404:
-          body:
-            application/json:
-              type: ErrorMessage
-        429:
-          body:
-            application/json:
-              type: ErrorMessage
-        500:
-          body:
-            application/json:
-              type: ErrorMessage
+    type: Member
+    get:  
     put:
       responses:
-        200:
-
-        201:
-
-        400:
-          body:
-            application/json:
-              type: ErrorMessage
-        401:
-          body:
-            application/json:
-              properties:
-                errorCode: string
-                message: string
         404:
-          body:
-            application/json:
-              properties:
-                errorCode: string
-                message: string
-        429:
-          body:
-            application/json:
-              properties:
-                errorCode: string
-                message: string
-        500:
-          body:
-            application/json:
-              properties:
-                errorCode: string
-                message: string
     delete:
-      responses:
-        204:
-        400:
-          body:
-            application/json:
-              properties:
-                errorCode: string
-                message: string
-        401:
-          body:
-            application/json:
-              properties:
-                errorCode: string
-                message: string
-        404:
-          body:
-            application/json:
-              properties:
-                errorCode: string
-                message: string
-        429:
-          body:
-            application/json:
-              properties:
-                errorCode: string
-                message: string
-        500:
-          body:
-            application/json:
-              properties:
-                errorCode: string
-                message: string
 
     /accounts:
       type: Collection
@@ -140,70 +51,35 @@ types:
       post:
         
       /{accountId}:
-        get:
-          responses:
-            200:
-            400:
-              body:
-                application/json:
-                  properties:
-                    errorCode: string
-                    message: string
-            401:
-              body:
-                application/json:
-                  properties:
-                    errorCode: string
-                    message: string
-            404:
-              body:
-                application/json:
-                  properties:
-                    errorCode: string
-                    message: string
-            429:
-              body:
-                application/json:
-                  properties:
-                    errorCode: string
-                    message: string
-            500:
-              body:
-                application/json:
-                  properties:
-                    errorCode: string
-                    message: string
+        type: Member
+        get:  
         patch:
-          responses:
-            200:
         delete:
-          responses:
-            204:
-
+          
         /transactions:
           type: Collection
           get:
           post:
+          
           /{transactionId}:
+            type: Member
             get:
-              responses:
-                200:
-
+              
 /accounts:
   type: Collection
   get:
   post:
 
   /{accountId}:
+    type: Member
     get:
-      responses:
-        200:
+      
 
 /transactions:
   type: Collection
   get:
   
   /{transactionId}:
+    type: Member
     get:
-      responses:
-        200:
+    put:

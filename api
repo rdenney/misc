@@ -16,7 +16,8 @@ types:
   Account: !include datatypes/Account.raml
 
 /customers:
-  description: This is the customers collection
+  type: Collection
+  
   get:
     description: Returns a collection of customers
     displayName: Get Customers
@@ -34,43 +35,13 @@ types:
             description: here's how to use this header ...
           Expires:
             
-        body:
-          application/json:
-            type: Customer[]
-            example:
-          application/xml:
-            type: Customer[]
+        
           
 
       
                 
   post:
-    body:
-      application/json:
-        type: Customer[]
-    responses:
-      201:
-      
-      400:
-        body:
-          application/json:
-            type: ErrorMessage
-      401:
-        body:
-          application/json:
-            type: ErrorMessage
-      404:
-        body:
-          application/json:
-            type: ErrorMessage
-      429:
-        body:
-          application/json:
-            type: ErrorMessage
-      500:
-        body:
-          application/json:
-            type: ErrorMessage
+    
   /{customerId}:
     get:
       responses:
@@ -164,72 +135,10 @@ types:
                 message: string
 
     /accounts:
+      type: Collection
       get:
-        responses:
-          200:
-          400:
-            body:
-              application/json:
-                properties:
-                  errorCode: string
-                  message: string
-          401:
-            body:
-              application/json:
-                properties:
-                  errorCode: string
-                  message: string
-          404:
-            body:
-              application/json:
-                properties:
-                  errorCode: string
-                  message: string
-          429:
-            body:
-              application/json:
-                properties:
-                  errorCode: string
-                  message: string
-          500:
-            body:
-              application/json:
-                properties:
-                  errorCode: string
-                  message: string
       post:
-        responses:
-          201:
-          400:
-            body:
-              application/json:
-                properties:
-                  errorCode: string
-                  message: string
-          401:
-            body:
-              application/json:
-                properties:
-                  errorCode: string
-                  message: string
-          404:
-            body:
-              application/json:
-                properties:
-                  errorCode: string
-                  message: string
-          429:
-            body:
-              application/json:
-                properties:
-                  errorCode: string
-                  message: string
-          500:
-            body:
-              application/json:
-                properties:
-                  errorCode: string
-                  message: string
+        
       /{accountId}:
         get:
           responses:
@@ -272,12 +181,9 @@ types:
             204:
 
         /transactions:
+          type: Collection
           get:
-            responses:
-              200:
           post:
-            responses:
-              201:
           /{transactionId}:
             get:
               responses:
@@ -285,6 +191,8 @@ types:
 
 /accounts:
   type: Collection
+  get:
+  post:
 
   /{accountId}:
     get:
@@ -293,11 +201,9 @@ types:
 
 /transactions:
   type: Collection
+  get:
   
   /{transactionId}:
     get:
       responses:
         200:
-
-
-

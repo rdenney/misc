@@ -1,38 +1,14 @@
 #%RAML 1.0 ResourceType
 
 get?:
-  description: Return the details of this particular <<resourcePathName | !singularize>>
+  is: 
+    - sortable
+  description: Returns a list of all <<resourcePathName>>
   responses:
     200:
       body:
         application/json:
-          type: <<resourcePathName | !singularize | !uppercamelcase>>
-    400:
-      body:
-        application/json:
-          type: ErrorMessage
-    401:
-      body:
-        application/json:
-          type: ErrorMessage
-    404:
-      body:
-        application/json:
-          type: ErrorMessage
-    429:
-      body:
-        application/json:
-          type: ErrorMessage
-    500:
-      body:
-        application/json:
-          type: ErrorMessage
-put?:
-  description: Overwrite/replace the details of this particular <<resourcePathName | !singularize>>
-  responses:
-    200:
-
-   
+          type: <<resourcePathName | !singularize | !uppercamelcase>>[]
 
     400:
       body:
@@ -41,26 +17,33 @@ put?:
     401:
       body:
         application/json:
-          properties:
-            errorCode: string
-            message: string
-    
+          type: ErrorMessage
+    404:
+      body:
+        application/json:
+          type: ErrorMessage
     429:
       body:
         application/json:
-          properties:
-            errorCode: string
-            message: string
+          type: ErrorMessage
     500:
       body:
         application/json:
-          properties:
-            errorCode: string
-            message: string
-patch?:
-  description: Update this particular <<resourcePathName | !singularize>>
+          type: ErrorMessage
+          
+
+
+post?:
+  description: Add a new <<resourcePathName | !singularize>>
+  body:
+    application/json:
+      type: <<resourcePathName | !singularize | !uppercamelcase>>
+      
   responses:
-    200:
+    201:
+      body:
+        application/json:
+  
     400:
       body:
         application/json:
@@ -81,37 +64,3 @@ patch?:
       body:
         application/json:
           type: ErrorMessage
-delete?:
-  description: Delete this <<resourcePathName | !singularize>>
-  responses:
-    204:
-    400:
-      body:
-        application/json:
-          properties:
-            errorCode: string
-            message: string
-    401:
-      body:
-        application/json:
-          properties:
-            errorCode: string
-            message: string
-    404:
-      body:
-        application/json:
-          properties:
-            errorCode: string
-            message: string
-    429:
-      body:
-        application/json:
-          properties:
-            errorCode: string
-            message: string
-    500:
-      body:
-        application/json:
-          properties:
-            errorCode: string
-            message: string

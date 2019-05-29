@@ -1,0 +1,21 @@
+#%RAML 1.0 Library
+usage: Use these traits to add query parameters to your methods
+
+traits:
+  contentNegotiable:
+    headers:
+      Accept?:
+        enum:
+          - application/json
+          - application/xml
+        default: application/json
+
+  pageable: 
+    queryParameters:
+      results:
+        description: how many results per request
+        required: false
+        type: number
+      lastid:
+        description: the id of the last result (cursor) from your previous response
+        required: false

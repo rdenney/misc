@@ -1,0 +1,64 @@
+#%RAML 1.0 ResourceType
+
+get:
+  description: Returns a list of all <<resourcePathName>>
+  responses:
+    200:
+      body:
+        application/json:
+          type: <<resourcePathName | !singularize | !uppercamelcase>>[]
+
+    400:
+      body:
+        application/json:
+          type: !include ../datatypes/CustomErrorMessage.raml
+    401:
+      body:
+        application/json:
+          type: !include ../datatypes/CustomErrorMessage.raml
+    404:
+      body:
+        application/json:
+          type: !include ../datatypes/CustomErrorMessage.raml
+    429:
+      body:
+        application/json:
+          type: !include ../datatypes/CustomErrorMessage.raml
+    500:
+      body:
+        application/json:
+          type: !include ../datatypes/CustomErrorMessage.raml
+          
+
+
+post:
+  description: Add a new <<resourcePathName | !singularize>>
+  body:
+    application/json:
+      type: <<resourcePathName | !singularize | !uppercamelcase>>
+      
+  responses:
+    201:
+      body:
+        application/json:
+  
+    400:
+      body:
+        application/json:
+          type: !include ../datatypes/CustomErrorMessage.raml
+    401:
+      body:
+        application/json:
+          type: !include ../datatypes/CustomErrorMessage.raml
+    404:
+      body:
+        application/json:
+          type: !include ../datatypes/CustomErrorMessage.raml
+    429:
+      body:
+        application/json:
+          type: !include ../datatypes/CustomErrorMessage.raml
+    500:
+      body:
+        application/json:
+          type: !include ../datatypes/CustomErrorMessage.raml

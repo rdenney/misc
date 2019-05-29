@@ -1,0 +1,303 @@
+#%RAML 1.0
+version: v1
+title: ACME Banking API
+
+documentation:
+  - !include documentation/acmeBankDoc.raml
+  - !include documentation/acmeBankDoc2.raml
+
+resourceTypes:
+  Collection: !include resourceTypes/collection.raml
+
+types:
+  ErrorMessage: !include datatypes/CustomErrorMessage.raml
+  Customer: !include datatypes/Customer.raml
+  Transaction: !include datatypes/Transaction.raml
+  Account: !include datatypes/Account.raml
+
+/customers:
+  description: This is the customers collection
+  get:
+    description: Returns a collection of customers
+    displayName: Get Customers
+    headers:
+      Accept?:
+        enum:
+          - application/json
+          - application/xml
+        default: application/json
+
+    responses:
+      200:   
+        headers:
+          Cache-Control:
+            description: here's how to use this header ...
+          Expires:
+            
+        body:
+          application/json:
+            type: Customer[]
+            example:
+          application/xml:
+            type: Customer[]
+          
+
+      
+                
+  post:
+    body:
+      application/json:
+        type: Customer[]
+    responses:
+      201:
+      
+      400:
+        body:
+          application/json:
+            type: ErrorMessage
+      401:
+        body:
+          application/json:
+            type: ErrorMessage
+      404:
+        body:
+          application/json:
+            type: ErrorMessage
+      429:
+        body:
+          application/json:
+            type: ErrorMessage
+      500:
+        body:
+          application/json:
+            type: ErrorMessage
+  /{customerId}:
+    get:
+      responses:
+        200:
+        400:
+          body:
+            application/json:
+              type: ErrorMessage
+        401:
+          body:
+            application/json:
+              type: ErrorMessage
+        404:
+          body:
+            application/json:
+              type: ErrorMessage
+        429:
+          body:
+            application/json:
+              type: ErrorMessage
+        500:
+          body:
+            application/json:
+              type: ErrorMessage
+    put:
+      responses:
+        200:
+
+        201:
+
+        400:
+          body:
+            application/json:
+              type: ErrorMessage
+        401:
+          body:
+            application/json:
+              properties:
+                errorCode: string
+                message: string
+        404:
+          body:
+            application/json:
+              properties:
+                errorCode: string
+                message: string
+        429:
+          body:
+            application/json:
+              properties:
+                errorCode: string
+                message: string
+        500:
+          body:
+            application/json:
+              properties:
+                errorCode: string
+                message: string
+    delete:
+      responses:
+        204:
+        400:
+          body:
+            application/json:
+              properties:
+                errorCode: string
+                message: string
+        401:
+          body:
+            application/json:
+              properties:
+                errorCode: string
+                message: string
+        404:
+          body:
+            application/json:
+              properties:
+                errorCode: string
+                message: string
+        429:
+          body:
+            application/json:
+              properties:
+                errorCode: string
+                message: string
+        500:
+          body:
+            application/json:
+              properties:
+                errorCode: string
+                message: string
+
+    /accounts:
+      get:
+        responses:
+          200:
+          400:
+            body:
+              application/json:
+                properties:
+                  errorCode: string
+                  message: string
+          401:
+            body:
+              application/json:
+                properties:
+                  errorCode: string
+                  message: string
+          404:
+            body:
+              application/json:
+                properties:
+                  errorCode: string
+                  message: string
+          429:
+            body:
+              application/json:
+                properties:
+                  errorCode: string
+                  message: string
+          500:
+            body:
+              application/json:
+                properties:
+                  errorCode: string
+                  message: string
+      post:
+        responses:
+          201:
+          400:
+            body:
+              application/json:
+                properties:
+                  errorCode: string
+                  message: string
+          401:
+            body:
+              application/json:
+                properties:
+                  errorCode: string
+                  message: string
+          404:
+            body:
+              application/json:
+                properties:
+                  errorCode: string
+                  message: string
+          429:
+            body:
+              application/json:
+                properties:
+                  errorCode: string
+                  message: string
+          500:
+            body:
+              application/json:
+                properties:
+                  errorCode: string
+                  message: string
+      /{accountId}:
+        get:
+          responses:
+            200:
+            400:
+              body:
+                application/json:
+                  properties:
+                    errorCode: string
+                    message: string
+            401:
+              body:
+                application/json:
+                  properties:
+                    errorCode: string
+                    message: string
+            404:
+              body:
+                application/json:
+                  properties:
+                    errorCode: string
+                    message: string
+            429:
+              body:
+                application/json:
+                  properties:
+                    errorCode: string
+                    message: string
+            500:
+              body:
+                application/json:
+                  properties:
+                    errorCode: string
+                    message: string
+        patch:
+          responses:
+            200:
+        delete:
+          responses:
+            204:
+
+        /transactions:
+          get:
+            responses:
+              200:
+          post:
+            responses:
+              201:
+          /{transactionId}:
+            get:
+              responses:
+                200:
+
+/accounts:
+  type: Collection
+
+  /{accountId}:
+    get:
+      responses:
+        200:
+
+/transactions:
+  type: Collection
+  
+  /{transactionId}:
+    get:
+      responses:
+        200:
+
+
+
